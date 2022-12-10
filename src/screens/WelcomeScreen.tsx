@@ -10,12 +10,12 @@ export const WelcomeScreen = () => {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
+    <SafeAreaView>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <ScrollView contentInsetAdjustmentBehavior="automatic" style={backgroundStyle}>
+      <ScrollView contentInsetAdjustmentBehavior="automatic" style={{backgroundColor: colors.primaryDark}}>
         <View style={styles.sectionContainer}>
           <Text style={{color: 'white'}}>Hello world</Text>
         </View>

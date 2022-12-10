@@ -1,12 +1,12 @@
-import ApplicationRouterWrapper from '@/routes/AppRouter';
 import {ReduxWrapper} from '@/store/root';
 import React, {FC, ReactElement} from 'react';
+import {ApplicationRoutes} from './routes/ApplicationRoutes';
 import {WelcomeScreen} from './screens/WelcomeScreen';
 
 const App: FC = (): ReactElement => {
   return (
     <ReduxWrapper>
-      <WelcomeScreen />
+      <ApplicationRoutes />
     </ReduxWrapper>
   );
 };

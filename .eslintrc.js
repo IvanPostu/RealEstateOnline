@@ -18,6 +18,7 @@ module.exports = {
         'no-console': 'off',
         '@typescript-eslint/no-unused-vars': 'warn',
         'prettier/prettier': 'warn',
+        'react-native/no-inline-styles': 'off',
       },
     },
   ],
