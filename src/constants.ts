@@ -12,4 +12,10 @@ export const dictionary = {
   house: 'Casă',
   aboutUs1:
     'Oferim asistență profesională pe tot parcursul tranzacției de vânzare/cumpărare sau chirie a unui imobil, astfel găsim soluții optime pentru orice situație.',
+  mainTitle: 'Apartamente/case/terenuri în orașe și suburbii',
+  mainText: 'Comision zero, pentru cumpărători și chiriași',
+  sortBy: 'Sortează după',
+  newestByDate: 'dată cele mai noi',
+  moreExpensive: 'preț mai scump',
+  lessExpensive: 'preț mai ieftin',
 } as const;
