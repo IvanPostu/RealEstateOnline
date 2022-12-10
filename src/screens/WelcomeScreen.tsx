@@ -1,44 +1,64 @@
+import {PrimaryLayout} from '@/components/PrimaryLayout/PrimaryLayout';
+import {colors, dictionary} from '@/constants';
 import React from 'react';
-import {SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, useColorScheme, View} from 'react-native';
-import {colors} from '@/constants';
+import {Text, TouchableOpacity, View} from 'react-native';
 
 export const WelcomeScreen = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? colors.primaryDark : colors.primaryLight,
-  };
-
   return (
-    <SafeAreaView>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView contentInsetAdjustmentBehavior="automatic" style={{backgroundColor: colors.primaryDark}}>
-        <View style={styles.sectionContainer}>
-          <Text style={{color: 'white'}}>Hello world</Text>
+    <PrimaryLayout>
+      <View
+        style={{
+          height: 300,
+          borderRadius: 22,
+          marginTop: -50,
+          backgroundColor: '#fff',
+          padding: 30,
+        }}>
+        <Text style={{fontSize: 30, fontWeight: 'bold', letterSpacing: 1, color: '#2e3532'}}>
+          {dictionary.companyTitle}
+        </Text>
+        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+          <Text style={{color: '#a0a9a1'}}>{dictionary.aboutUs1}</Text>
         </View>
-      </ScrollView>
-    </SafeAreaView>
+        <View style={{flexDirection: 'column', justifyContent: 'flex-end'}}>
+          <View style={{flexDirection: 'row'}}>
+            <View style={{flex: 0.5}}>
+              <TouchableOpacity
+                activeOpacity={0.7}
+                style={{
+                  height: 48,
+                  borderColor: colors.primaryGreen,
+                  borderWidth: 2,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRadius: 24,
+                  marginRight: 5,
+                }}>
+                <Text
+                  style={{textTransform: 'uppercase', fontSize: 13, fontWeight: 'bold', color: colors.primaryGreen}}>
+                  {dictionary.apartment}
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <View style={{flex: 0.5}}>
+              <TouchableOpacity
+                activeOpacity={0.7}
+                style={{
+                  height: 48,
+                  backgroundColor: colors.primaryGreen,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRadius: 24,
+                  marginLeft: 5,
+                }}>
+                <Text style={{textTransform: 'uppercase', fontSize: 13, fontWeight: 'bold', color: '#fffffa'}}>
+                  {dictionary.house}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </View>
+    </PrimaryLayout>
   );
 };
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
