@@ -1,13 +1,15 @@
 import {ReduxWrapper} from '@/store/root';
 import React, {FC, ReactElement} from 'react';
 import {ApplicationRoutes} from './routes/ApplicationRoutes';
-import {WelcomeScreen} from './screens/WelcomeScreen';
+import {NavigationContainer} from '@react-navigation/native';
 
 const App: FC = (): ReactElement => {
   return (
-    <ReduxWrapper>
-      <ApplicationRoutes />
-    </ReduxWrapper>
+    <NavigationContainer>
+      <ReduxWrapper>
+        <ApplicationRoutes />
+      </ReduxWrapper>
+    </NavigationContainer>
   );
 };
 

@@ -1,15 +1,27 @@
-import {WelcomeScreen} from '@/screens/WelcomeScreen';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React, {Fragment} from 'react';
-// import {Router, Scene} from 'react-native-router-flux';
+import {routes} from './routes';
 
-const AppRouter = Fragment as any;
+const Stack = createNativeStackNavigator();
 
 export const ApplicationRoutes = () => {
   return (
-    <AppRouter>
-      {/* <Scene key="root">
-        <Scene key="home" component={WelcomeScreen} title="Home" initial={true} />
-      </Scene> */}
-    </AppRouter>
+    <Fragment>
+      <Stack.Navigator>
+        {Object.keys(routes).map(key => (
+          <Stack.Screen
+            key={key}
+            name={routes[key].title}
+            component={routes[key].component}
+            options={({navigation}) => ({
+              header: () => <Fragment />,
+
+              animationEnabled: true,
+              navigation,
+            })}
+          />
+        ))}
+      </Stack.Navigator>
+    </Fragment>
   );
 };
