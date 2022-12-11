@@ -21,7 +21,7 @@ DerivedData
 *.ipa
 *.xcuserstate
 ios/.xcode.env.local
-
+.vscode
 # Android/IntelliJ
 #
 build/
@@ -31,6 +31,7 @@ local.properties
 *.iml
 *.hprof
 .cxx/
+a.css
 
 # node.js
 #
