@@ -1,7 +1,8 @@
 import {combineReducers} from 'redux';
+import {mainFilterReducer} from '../mainFilter/reducers';
 
 const rootReducer = combineReducers({
-  q: () => ({}),
+  mainFilter: mainFilterReducer,
 });
 
 export default rootReducer;

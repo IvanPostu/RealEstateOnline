@@ -37,4 +37,7 @@ export const dictionary = {
   noRepair: 'Fără reparație',
   underConstruction: 'În construcție',
   applyFilter: 'Aplică filtru',
+  resetFilter: 'Resetează filtru',
+  typeOfRealEstateSpace: 'Tip imobil',
+  surface: 'Suprafata, m²',
 } as const;

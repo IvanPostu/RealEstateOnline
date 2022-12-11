@@ -3,13 +3,15 @@ import {HorizontalLine} from '@/components/HorizontalLine/HorizontalLine';
 import {MainFilter} from '@/components/MainFilter/MainFilter';
 import {PrimaryLayout} from '@/components/PrimaryLayout/PrimaryLayout';
 import {colors, dictionary} from '@/constants';
+import {GlobalStateType} from '@/store';
+import {changeFilterState} from '@/store/mainFilter/actionCreators';
+import {MainFilterStateType} from '@/store/mainFilter/types';
 import React, {Fragment, useState} from 'react';
-import {Dimensions, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import SelectDropdown from 'react-native-select-dropdown';
 import {SvgXml} from 'react-native-svg';
-
-const sortByOptions = [dictionary.newestByDate, dictionary.moreExpensive, dictionary.lessExpensive];
+import {useDispatch, useSelector} from 'react-redux';
 
 function DropdownArrow() {
   return (
@@ -36,9 +38,11 @@ export const MainScreen = () => {
     filterIsVisible: false,
   });
 
+  const mainFilterState = useSelector<GlobalStateType, MainFilterStateType>(globalState => globalState.mainFilter);
+  const dispatch = useDispatch();
   return (
     <PrimaryLayout>
-      <ScrollView>
+      <ScrollView style={styles.scrollableContainer}>
         <Container style={styles.container}>
           <Text style={styles.mainTitle}>{dictionary.mainTitle}</Text>
           <Text style={styles.mainTextCountOfPublications}>1922 oferte</Text>
@@ -50,14 +54,14 @@ export const MainScreen = () => {
             </View>
             <View style={{flexGrow: 6, justifyContent: 'center'}}>
               <SelectDropdown
-                defaultValue={sortByOptions[0]}
+                defaultValue={mainFilterState.sortBy}
                 buttonStyle={{borderWidth: 1, height: 38, borderColor: colors.primaryGray}}
                 buttonTextStyle={{fontSize: 16}}
                 rowTextStyle={{fontSize: 15}}
                 renderDropdownIcon={DropdownArrow}
-                data={sortByOptions}
-                onSelect={(selectedItem, index) => {
-                  console.log(selectedItem, index);
+                data={mainFilterState.sortByOptions}
+                onSelect={selectedItem => {
+                  dispatch(changeFilterState(prevState => ({...prevState, sortBy: selectedItem})) as any);
                 }}
                 buttonTextAfterSelection={selectedItem => {
                   return selectedItem;
@@ -124,11 +128,13 @@ export const MainScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  scrollableContainer: {
+    marginVertical: 10,
+    borderRadius: 20,
+  },
   container: {
     backgroundColor: 'rgba(244, 244, 244, 0.955)',
     borderRadius: 20,
-    marginTop: Dimensions.get('screen').width * 0.03,
-    width: Dimensions.get('screen').width * 0.97,
   },
   mainTitle: {
     textTransform: 'uppercase',
