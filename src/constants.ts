@@ -40,4 +40,5 @@ export const dictionary = {
   resetFilter: 'Resetează filtru',
   typeOfRealEstateSpace: 'Tip imobil',
   surface: 'Suprafata, m²',
+  details: 'Detalii',
 } as const;

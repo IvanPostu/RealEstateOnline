@@ -7,7 +7,7 @@ import {GlobalStateType} from '@/store';
 import {changeFilterState} from '@/store/mainFilter/actionCreators';
 import {MainFilterStateType} from '@/store/mainFilter/types';
 import React, {Fragment, useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Image, ImageSourcePropType, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import SelectDropdown from 'react-native-select-dropdown';
 import {SvgXml} from 'react-native-svg';
@@ -32,6 +32,63 @@ function NotificationIcon() {
 type MainScreenStateType = {
   filterIsVisible: boolean;
 };
+
+type ApartmentOfferPropsType = {
+  imageSource?: ImageSourcePropType;
+  price: string;
+  surface: number;
+  countOfRooms: number;
+  floorNumber: string;
+};
+
+function ApartmentOffer(props: ApartmentOfferPropsType) {
+  return (
+    <Container
+      style={{
+        ...styles.container,
+        padding: 8,
+        marginTop: 10,
+        borderWidth: 1,
+        borderColor: colors.primaryGray,
+        backgroundColor: 'white',
+      }}>
+      <View style={{flexDirection: 'row'}}>
+        <View style={{flex: 0.5}}>
+          <Image style={{width: '100%', height: 120}} source={props.imageSource} />
+        </View>
+        <View style={{flex: 0.5, justifyContent: 'flex-end'}}>
+          <View style={{marginLeft: 5, flexGrow: 1}}>
+            <Text style={{fontSize: 17}}>
+              <Text style={{fontWeight: 'bold'}}>Preț:</Text> <Text>{props.price}</Text>
+            </Text>
+            <Text style={{fontSize: 15}}>
+              <Text style={{fontWeight: 'bold'}}>Suprafața:</Text> <Text>{props.surface} m²</Text>
+            </Text>
+            <Text style={{fontSize: 15}}>
+              <Text style={{fontWeight: 'bold'}}>Nr. băi:</Text> <Text>{props.countOfRooms}</Text>
+            </Text>
+            <Text style={{fontSize: 15}}>
+              <Text style={{fontWeight: 'bold'}}>Nr. Etaj:</Text> <Text>{props.floorNumber}</Text>
+            </Text>
+          </View>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            style={{
+              height: 36,
+              backgroundColor: colors.primaryGreen,
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginLeft: 5,
+            }}>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <Text style={{fontSize: 13, fontWeight: 'bold', color: '#fffffa'}}>{dictionary.details}</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </Container>
+  );
+}
 
 export const MainScreen = () => {
   const [state, setState] = useState<MainScreenStateType>({
@@ -122,6 +179,10 @@ export const MainScreen = () => {
             <Fragment />
           )}
         </Container>
+
+        {flatOffers.map((element, index) => (
+          <ApartmentOffer {...element} key={index} />
+        ))}
       </ScrollView>
     </PrimaryLayout>
   );
@@ -134,7 +195,7 @@ const styles = StyleSheet.create({
   },
   container: {
     backgroundColor: 'rgba(244, 244, 244, 0.955)',
-    borderRadius: 20,
+    borderRadius: 8,
   },
   mainTitle: {
     textTransform: 'uppercase',
@@ -162,3 +223,69 @@ const styles = StyleSheet.create({
     padding: 10,
   },
 });
+
+const flatOffers: Array<ApartmentOfferPropsType> = [
+  {
+    countOfRooms: 2,
+    floorNumber: '7/11',
+    price: '30.000 $',
+    surface: 34,
+    imageSource: require('@/assets/flat1.png'),
+  },
+  {
+    countOfRooms: 3,
+    floorNumber: '2/13',
+    price: '14.000 $',
+    surface: 22,
+    imageSource: require('@/assets/flat2.png'),
+  },
+  {
+    countOfRooms: 1,
+    floorNumber: '3/11',
+    price: '22.000 $',
+    surface: 27,
+    imageSource: require('@/assets/flat3.png'),
+  },
+  {
+    countOfRooms: 3,
+    floorNumber: '3/16',
+    price: '87.000 $',
+    surface: 77,
+    imageSource: require('@/assets/flat4.png'),
+  },
+  {
+    countOfRooms: 1,
+    floorNumber: '1/8',
+    price: '22.000 $',
+    surface: 22,
+    imageSource: require('@/assets/flat5.png'),
+  },
+  {
+    countOfRooms: 2,
+    floorNumber: '5/11',
+    price: '45.000 $',
+    surface: 55,
+    imageSource: require('@/assets/flat6.png'),
+  },
+  {
+    countOfRooms: 3,
+    floorNumber: '11/11',
+    price: '87.000 $',
+    surface: 77,
+    imageSource: require('@/assets/flat7.png'),
+  },
+  {
+    countOfRooms: 1,
+    floorNumber: '1/5',
+    price: '19.000 $',
+    surface: 28,
+    imageSource: require('@/assets/flat8.png'),
+  },
+  {
+    countOfRooms: 3,
+    floorNumber: '7/11',
+    price: '55.000 $',
+    surface: 55,
+    imageSource: require('@/assets/flat9.png'),
+  },
+];
